@@ -40,6 +40,9 @@ class NormalPublisherModule : public aimrt::ModuleBase {
   std::string topic_name_ = "test_topic";
   double channel_frq_ = 0.5;
   aimrt::channel::PublisherRef publisher_;
+  aimrt::channel::PublisherRef publisher2_;
+  aimrt::channel::PublisherRef publisher3_;
+  aimrt::channel::PublisherRef publisher4_;
 };
 
 }  // namespace aimrt::examples::cpp::pb_chn::normal_publisher_module

@@ -29,10 +29,16 @@ bool NormalPublisherModule::Initialize(aimrt::CoreRef core) {
                             "Get executor 'work_thread_pool' failed.");
 
     // Register publish type
-    publisher_ = core_.GetChannelHandle().GetPublisher(topic_name_);
+    publisher_ = core_.GetChannelHandle().GetPublisher("/aima/hds/system_status_soc1");
+    publisher2_ = core_.GetChannelHandle().GetPublisher("/aima/hds/system_status_soc2");
+    publisher3_ = core_.GetChannelHandle().GetPublisher("/aima/hds/system_status_soc3");
+    publisher4_ = core_.GetChannelHandle().GetPublisher("/aima/hds/system_status_soc2");
     AIMRT_CHECK_ERROR_THROW(publisher_, "Get publisher for topic '{}' failed.", topic_name_);
 
     bool ret = aimrt::channel::RegisterPublishType<aimrt::protocols::example::ExampleEventMsg>(publisher_);
+    ret = aimrt::channel::RegisterPublishType<aimrt::protocols::example::ExampleEventMsg>(publisher2_);
+    ret = aimrt::channel::RegisterPublishType<aimrt::protocols::example::ExampleEventMsg>(publisher3_);
+    ret = aimrt::channel::RegisterPublishType<aimrt::protocols::example::ExampleEventMsg>(publisher4_);
     AIMRT_CHECK_ERROR_THROW(ret, "Register publish type failed.");
 
   } catch (const std::exception& e) {
